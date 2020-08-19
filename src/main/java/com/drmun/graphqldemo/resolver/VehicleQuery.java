@@ -1,8 +1,8 @@
-package com.drmun.graphqldemo.query;
+package com.drmun.graphqldemo.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.drmun.graphqldemo.dao.entity.Vehicle;
 import com.drmun.graphqldemo.service.VehicleService;
+import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

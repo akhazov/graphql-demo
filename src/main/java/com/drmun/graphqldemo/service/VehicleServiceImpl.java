@@ -40,7 +40,7 @@ public class VehicleServiceImpl implements VehicleService {
         vehicle.setType(type);
         vehicle.setModelCode(modelCode);
         vehicle.setBrandName(brandName);
-        vehicle.setLaunchDate(LocalDate.parse(launchDate));
+        vehicle.setLaunchDate(launchDate);
         return vehicleRepository.save(vehicle);
     }
 }

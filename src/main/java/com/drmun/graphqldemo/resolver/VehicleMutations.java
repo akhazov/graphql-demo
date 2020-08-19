@@ -1,8 +1,8 @@
-package com.drmun.graphqldemo.mutation;
+package com.drmun.graphqldemo.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.drmun.graphqldemo.dao.entity.Vehicle;
 import com.drmun.graphqldemo.service.VehicleService;
+import graphql.kickstart.tools.GraphQLMutationResolver;
 import org.springframework.stereotype.Component;
 
 /**

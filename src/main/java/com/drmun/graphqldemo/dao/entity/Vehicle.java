@@ -38,6 +38,10 @@ public class Vehicle implements Serializable {
 
     private transient String formattedDate;
 
+    public void setLaunchDate(String date) {
+        launchDate = LocalDate.parse(date);
+    }
+
     public String getFormattedDate() {
         return launchDate.toString();
     }

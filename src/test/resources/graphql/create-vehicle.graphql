@@ -1,0 +1,10 @@
+mutation {
+    createVehicle(
+        type: "car",
+        modelCode: "ZXC",
+        brandName: "audi",
+        launchDate: "2016-08-16")
+    {
+        id
+    }
+}
