@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "type": "car",
+    "modelCode": "ZXC",
+    "launchDate": "2016-08-16",
+    "brandName": "audi"
+  },
+  {
+    "id": "2",
+    "type": "car",
+    "modelCode": "ZXC",
+    "launchDate": "2016-08-16",
+    "brandName": "audi"
+  },
+  {
+    "id": "3",
+    "type": "car",
+    "modelCode": "ZXC",
+    "launchDate": "2016-08-16",
+    "brandName": "audi"
+  },
+  {
+    "id": "4",
+    "type": "car",
+    "modelCode": "ZXC",
+    "launchDate": "2016-08-16",
+    "brandName": "audi"
+  },
+  {
+    "id": "5",
+    "type": "car",
+    "modelCode": "ZXC",
+    "launchDate": "2016-08-16",
+    "brandName": "audi"
+  }
+]

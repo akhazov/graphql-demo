@@ -6,5 +6,6 @@ mutation {
         launchDate: "2016-08-16")
     {
         id
+        type
     }
 }

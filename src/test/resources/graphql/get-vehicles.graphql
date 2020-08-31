@@ -1,0 +1,10 @@
+query {
+    vehicles(count: 5)
+    {
+        id,
+        type,
+        modelCode,
+        launchDate,
+        brandName
+    }
+}

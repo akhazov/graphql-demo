@@ -29,20 +29,23 @@ class VehicleMutationsTest {
 
     @BeforeAll
     static void setUp() {
-        vehicle.setId(1);
+        vehicle.setId(TestConstant.ID);
         vehicle.setType(TestConstant.TYPE);
         vehicle.setModelCode(TestConstant.MODEL_CODE);
         vehicle.setBrandName(TestConstant.BRAND_NAME);
         vehicle.setLaunchDate(TestConstant.LAUNCH_DATE);
     }
 
-    @Test
-    void createVehicle() throws IOException {
+    @Test()
+    void createVehicleTest() throws IOException {
         doReturn(vehicle)
                 .when(vehicleServiceMock)
                 .createVehicle(TestConstant.TYPE, TestConstant.MODEL_CODE, TestConstant.BRAND_NAME, TestConstant.LAUNCH_DATE);
         GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/create-vehicle.graphql");
         assertThat(response.isOk()).isTrue();
-        assertThat(response.get("$.data.createVehicle.id")).isNotNull();
+        assertThat(response.get("$.data.createVehicle.id")).as("Id not found").isNotNull();
+        assertThat(response.get("$.data.createVehicle.type"))
+                .as("Type not found").isNotNull()
+                .as("The data does not match").isEqualTo(TestConstant.TYPE);
     }
 }

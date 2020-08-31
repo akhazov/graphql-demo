@@ -1,5 +1,6 @@
 package com.drmun.graphqldemo.dao.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class Vehicle implements Serializable {
     @Column(name = "launch_date")
     private LocalDate launchDate;
 
+    @JsonIgnore
     private transient String formattedDate;
 
     public void setLaunchDate(String date) {

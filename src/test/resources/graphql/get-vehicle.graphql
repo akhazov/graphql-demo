@@ -1,0 +1,8 @@
+query {
+    vehicle(id: 1)
+    {
+        id,
+        modelCode,
+        brandName
+    }
+}
