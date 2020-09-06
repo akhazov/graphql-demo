@@ -1,6 +1,7 @@
 package com.drmun.graphqldemo.resolver;
 
 import com.drmun.graphqldemo.dao.entity.Vehicle;
+import com.drmun.graphqldemo.error.exception.VehicleNotFoundException;
 import com.drmun.graphqldemo.service.VehicleService;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import org.springframework.stereotype.Component;
@@ -31,9 +32,9 @@ public class VehicleQuery implements GraphQLQueryResolver {
     /**
      * Запрос сущности по идентификатору.
      * @param id Идентификатор сущности.
-     * @return Резльтат запроса.
+     * @return Результат запроса или исключение об ошибке, что объект с таким ID не найден.
      */
-    public Optional<Vehicle> getVehicle(int id) {
-        return vehicleService.getVehicle(id);
+    public Vehicle getVehicle(int id) {
+        return vehicleService.getVehicle(id).orElseThrow(() -> new VehicleNotFoundException(id));
     }
 }

@@ -11,4 +11,6 @@ public class TestConstant {
     public static final int NUMBER_OF_OBJECT = 5;
 
     public static final int NONE_OBJECT = 7;
+
+    public static final String ERROR_MESSAGE = "Vehicle ID = 7 not found";
 }

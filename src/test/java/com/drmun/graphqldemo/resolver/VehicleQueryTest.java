@@ -2,12 +2,15 @@ package com.drmun.graphqldemo.resolver;
 
 import com.drmun.graphqldemo.constants.TestConstant;
 import com.drmun.graphqldemo.dao.entity.Vehicle;
+import com.drmun.graphqldemo.error.exception.VehicleNotFoundException;
 import com.drmun.graphqldemo.service.VehicleService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.graphql.spring.boot.test.GraphQLResponse;
 import com.graphql.spring.boot.test.GraphQLTest;
 import com.graphql.spring.boot.test.GraphQLTestTemplate;
+import graphql.ExceptionWhileDataFetching;
+import graphql.GraphQLError;
 import lombok.SneakyThrows;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,5 +87,20 @@ class VehicleQueryTest {
                 .as("The object should not be found.")
                 .isNullOrEmpty();
 
+    }
+
+    @SneakyThrows
+    @Test
+    void getVehicleNotFoundTest() {
+        Mockito.doReturn(Optional.empty())
+                .when(vehicleServiceMock)
+                .getVehicle(TestConstant.NONE_OBJECT);
+        GraphQLResponse response = graphQLTestTemplate.postForResource("graphql/not-found-vehicle.graphql");
+        Assertions.assertThat(response.isOk()).isTrue();
+        List<HashMap> errorList = response.getList("$.errors", HashMap.class);
+        HashMap<String, String> errorMessage = errorList.get(0);
+        Assertions.assertThat(errorMessage.get("message"))
+                .as("Error message no matches")
+                .contains(TestConstant.ERROR_MESSAGE);
     }
 }
