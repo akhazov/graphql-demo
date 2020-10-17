@@ -22,7 +22,7 @@ public class CustomGraphQLErrorHandler implements GraphQLErrorHandler {
     private GraphQLError getNested(GraphQLError error) {
         if (error instanceof ExceptionWhileDataFetching) {
             final Throwable exception = ((ExceptionWhileDataFetching) error).getException();
-            if ( exception instanceof GraphQLError) {
+            if (exception instanceof GraphQLError) {
                 return (GraphQLError) exception;
             }
         }

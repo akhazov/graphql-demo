@@ -1,5 +1,6 @@
 package com.drmun.graphqldemo.dao.entity;
 
+import com.drmun.graphqldemo.error.exception.DateForVehicleParsingException;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Сущность траспорного средства.
@@ -41,7 +43,13 @@ public class Vehicle implements Serializable {
     private transient String formattedDate;
 
     public void setLaunchDate(String date) {
-        launchDate = LocalDate.parse(date);
+        try {
+            launchDate = date.isBlank()
+                    ? null
+                    : LocalDate.parse(date);
+        } catch (DateTimeParseException exception) {
+            throw new DateForVehicleParsingException(date);
+        }
     }
 
     public String getFormattedDate() {
